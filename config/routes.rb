@@ -1,11 +1,15 @@
 Channelback::Application.routes.draw do
 
 get '/users/sign_in' => 'users#sign_in',:as => :sign_in
+get '/admin/sign_in' => 'admins#sign_in',:as => :admin_sign_in
 post '/users/sign_in' => 'users#login',:as => :login
+post '/admin/sign_in' => 'admins#login',:as => :admin_login
 post '/users/logout' => 'users#logout',:as => :logout
+post '/admin/logout' => 'admins#logout',:as => :admin_logout
 root :to => 'posts#index'
 resources :users
 resources :posts
+resources :admins
 #root :to => 'users#sign_in'
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,5 +1,12 @@
-- if @current_user
-  = button_to 'Sign Out', logout_path,:method => :post
-- else
-  = button_to 'Sign In', sign_in_path
-%br
+- if is_admin_page?
+  - if @current_admin
+    = button_to 'Sign Out', admin_logout_path,:method => :post
+  - else
+    = button_to 'Sign In', admin_sign_in_path
+    %br
+-else
+  - if @current_user
+    = button_to 'Sign Out', logout_path,:method => :post
+  - else
+    = button_to 'Sign In', sign_in_path
+  %br
