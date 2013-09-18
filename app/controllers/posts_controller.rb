@@ -6,9 +6,11 @@ class PostsController < ApplicationController
   end
 
   def new
+
     if @current_user.nil?
       redirect_to sign_in_path
     else
+      @categories = Category.all
       @post = Post.new
     end
   end
@@ -30,10 +32,9 @@ class PostsController < ApplicationController
     if @current_user.nil?
       redirect_to sign_in_path
     else
-      #puts "WHT" + params[:post].to_s
-      #@post = @current_user.posts.build(params[:post])
-      @post = Post.new(params[:post])
+      @post = Post.new(params[:post].except(:category_id))
       @post.user_id = @current_user.id
+      @post.category_id = params[:post][:category_id]
       if @post.save
         redirect_to posts_path
       else
