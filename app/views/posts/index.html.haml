@@ -3,7 +3,7 @@
   %h1= post.title
   %p= post.content
   %p= 'by ' + post.user.name
-  - if @current_user and post.user_id.eql? @current_user.id
+  - if (@current_user and post.user_id.eql? @current_user.id) or @current_admin
     = link_to 'Edit',edit_post_path(post)
     = link_to 'Delete',post_path(post),:method => :delete
   %br
