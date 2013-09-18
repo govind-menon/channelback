@@ -1,0 +1,11 @@
+= form_for(@post) do |f|
+  .field
+    = f.label :title
+    = f.text_field :title
+    %br/
+  .field
+    = f.label :content
+    = f.text_field :content
+    %br/
+  .actions
+    = f.submit
