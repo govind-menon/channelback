@@ -6,8 +6,7 @@ class PostsController < ApplicationController
   end
 
   def new
-
-    if @current_user.nil?
+     if @current_user.nil?
       redirect_to sign_in_path
     else
       @categories = Category.all
