@@ -3,6 +3,12 @@ class Post < ActiveRecord::Base
   attr_accessible :title,:content
   belongs_to :user
   belongs_to :category
+  has_many :tags
+  accepts_nested_attributes_for :tags
   validates :title,:presence => true
   validates :category,:presence => true
+
+  def tag_string
+    return tags.collect{|t| t.name}.join(',')
+  end
 end

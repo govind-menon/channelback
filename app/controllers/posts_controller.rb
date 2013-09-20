@@ -16,11 +16,25 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @categories = Category.all
   end
 
   def update
     @post = Post.find(params[:id])
-    if @post.update_attributes(params[:post])
+    @post.category_id = params[:post][:category_id]
+    tags = params[:post][:tags]
+    @post.tags = []
+    tags.split(',').each do |tag|
+      t = Tag.find_by_name(tag)
+      if t.nil?
+        t = Tag.new(:name => tag)
+        t.save
+      end
+      t.post_id = @post.id
+      @post.tags << t
+    end
+    @post.assign_attributes(params[:post].except(:category_id).except(:tags))
+    if @post.save
       redirect_to posts_path
     else
       redirect_to edit_post_path
@@ -31,9 +45,19 @@ class PostsController < ApplicationController
     if @current_user.nil?
       redirect_to sign_in_path
     else
-      @post = Post.new(params[:post].except(:category_id))
+      @post = Post.new(params[:post].except(:category_id).except(:tags))
       @post.user_id = @current_user.id
       @post.category_id = params[:post][:category_id]
+      tags = params[:post][:tags]
+      tags.split(',').each do |tag|
+        t = Tag.find_by_name(tag)
+        if t.nil?
+          t = Tag.new(:name => tag)
+          t.save
+        end
+        t.post_id = @post.id
+        @post.tags << t
+      end
       if @post.save
         redirect_to posts_path
       else

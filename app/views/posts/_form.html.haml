@@ -10,6 +10,10 @@
   .field
     = f.label :category
     = f.select :category_id, @categories.map {|c| [c.name,c.id]}
-
+    %br/
+  .field
+    = f.label :tags
+    = f.text_field :tags,:value => @post.tag_string
+    %br/
   .actions
     = f.submit
