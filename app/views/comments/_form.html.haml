@@ -1,0 +1,5 @@
+= form_tag :controller => :comments,:method => :post,:action => :create do
+   = label_tag 'Comment'
+   = text_field_tag :comment_text
+   = hidden_field_tag :post_id,@post.id
+   = submit_tag 'Add Comment'

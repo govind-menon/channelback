@@ -3,4 +3,4 @@
   %p= admin.name
   - if @current_admin and @current_admin.id.eql? admin.id
     %p= link_to 'Delete',admin_path(admin),:method => :delete
-= link_to 'Admin',new_admin_path
+= link_to 'Create New Admin',new_admin_path

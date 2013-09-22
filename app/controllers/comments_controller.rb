@@ -1,0 +1,20 @@
+class CommentsController < ApplicationController
+  def show
+  end
+
+  def create
+    puts 'heyy' + params.to_s
+    @comment = Comment.new(:text => params[:comment_text])
+    @comment.user_id = @current_user.id
+    @comment.post_id = params[:post_id]
+    @comment.save
+    redirect_to post_path(Post.find(params[:post_id]))
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    post_id = @comment.post_id
+    @comment.destroy
+    redirect_to post_path(Post.find(post_id))
+  end
+end

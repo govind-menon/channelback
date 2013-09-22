@@ -1,0 +1,16 @@
+%h1 ChannelBack
+%h1= @post.title
+%p= 'in ' + @post.category.name
+%p= @post.content
+%p= 'by ' + @post.user.name
+%p= 'Tagged with ' + @post.tag_string
+-if (@current_user and @post.user_id.eql? @current_user.id) or @current_admin
+  = link_to 'Edit',edit_post_path(@post)
+  = link_to 'Delete',post_path(@post),:method => :delete
+
+%br
+%h2= 'Comments'
+%br
+= render 'comments/show'
+- if @current_user
+  = render 'comments/form'
