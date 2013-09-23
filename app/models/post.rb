@@ -8,6 +8,7 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :tags
   validates :title,:presence => true
   validates :category,:presence => true
+  validates :user,:presence => true
 
   def tag_string
     return tags.collect{|t| t.name}.join(',')
