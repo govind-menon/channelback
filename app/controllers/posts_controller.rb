@@ -7,10 +7,13 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    if not @current_user.nil?
+      @vote = PostVote.find_vote(@post.id,@current_user.id).first
+    end
   end
 
   def new
-     if @current_user.nil?
+    if @current_user.nil?
       redirect_to sign_in_path
     else
       @categories = Category.all

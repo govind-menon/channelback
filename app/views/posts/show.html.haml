@@ -4,10 +4,15 @@
 %p= @post.content
 %p= 'by ' + @post.user.name
 %p= 'Tagged with ' + @post.tag_string
+%p= 'It has received ' + PostVote.where(:posts_id => @post.id).count.to_s + ' vote'.pluralize(PostVote.where(:posts_id => @post.id).count)
 -if (@current_user and @post.user_id.eql? @current_user.id) or @current_admin
   = link_to 'Edit',edit_post_path(@post)
   = link_to 'Delete',post_path(@post),:method => :delete
-
+-if @current_user
+  -if @vote.nil?
+    = render 'post_votes/form'
+  -else
+    = button_to '-',{:controller => :post_votes,:action => :destroy ,:id => @vote.id},:method => :delete
 %br
 %h2= 'Comments'
 %br

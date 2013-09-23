@@ -13,6 +13,7 @@ resources :posts
 resources :admins
 resources :categories
 resources :comments
+resources :post_votes
 #root :to => 'users#sign_in'
   # The priority is based upon order of creation:
   # first created -> highest priority.

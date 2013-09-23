@@ -1,0 +1,3 @@
+= form_tag :controller => :post_votes,:method => :post,:action => :create do
+   = hidden_field_tag :post_id,@post.id
+   = submit_tag '+'
