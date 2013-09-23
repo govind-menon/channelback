@@ -7,6 +7,7 @@ post '/users/sign_in' => 'users#login',:as => :login
 post '/admin/sign_in' => 'admins#login',:as => :admin_login
 post '/users/logout' => 'users#logout',:as => :logout
 post '/admin/logout' => 'admins#logout',:as => :admin_logout
+post '/comment_votes/:id' => 'comment_votes#destroy'
 root :to => 'posts#index'
 resources :users
 resources :posts
@@ -14,6 +15,7 @@ resources :admins
 resources :categories
 resources :comments
 resources :post_votes
+resources :comment_votes
 #root :to => 'users#sign_in'
   # The priority is based upon order of creation:
   # first created -> highest priority.

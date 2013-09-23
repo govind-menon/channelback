@@ -1,0 +1,4 @@
+= form_tag :controller => :comment_votes,:method => :post,:action => :create do
+   = hidden_field_tag :post_id,@post.id
+   = hidden_field_tag :comment_id,@comment.id
+   = submit_tag '+'

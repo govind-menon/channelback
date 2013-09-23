@@ -1,6 +1,14 @@
 - @post.comments.each do |comment|
-  %h4= User.find(comment.user_id).name
-  %p= comment.text
-  - if (@current_user and comment.user_id.eql? @current_user.id) or @current_admin
-    = button_to 'Delete', {:controller => :comments,:action => :destroy ,:id => comment.id},:method => :delete
+  -@comment = comment
+  %h4= User.find(@comment.user_id).name
+  %p= @comment.text
+  %p= CommentVote.find_all_by_comments_id(@comment.id).count
+  -if @current_user
+    - if (comment.user_id.eql? @current_user.id) or @current_admin
+      = button_to 'Delete', {:controller => :comments,:action => :destroy ,:id => comment.id},:method => :delete
+    - @vote = CommentVote.find_vote(@comment.id,@current_user.id).first
+    -if @vote.nil?
+      = render 'comment_votes/form'
+    -else
+      = render 'comment_votes/destroy'
   %br
