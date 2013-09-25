@@ -8,13 +8,11 @@ describe Category do
 
   end
 
-
   it 'should not create category if name not present' do
     category = Category.new
     category.should_not be_valid
     category.destroy
   end
-
 
   it 'should not create category with duplicate name' do
     category_1 = Category.new(:name => 'someCategory')
