@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 201309222015) do
+ActiveRecord::Schema.define(:version => 201309250056) do
 
   create_table "admins", :force => true do |t|
     t.string   "name"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 201309222015) do
     t.string  "password"
     t.string  "handle"
     t.integer "comments_id"
+    t.text    "password_confirmation"
   end
 
 end

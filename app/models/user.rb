@@ -1,9 +1,11 @@
 class User < ActiveRecord::Base
   # To change this template use File | Settings | File Templates.
-  attr_accessible :name,:email,:handle,:password
+  attr_accessible :name,:email,:handle,:password,:password_confirmation
 
   validates :email, :uniqueness => :true
   validates :email,:presence => true
+  validate :check_password_confirmation
+  validates :email,format: {with: /[a-zA-z\._]*@[a-zA-z\._]*\.com/}
 
   has_many :posts
 
@@ -14,6 +16,10 @@ class User < ActiveRecord::Base
     else
       nil
     end
+  end
+
+  def check_password_confirmation
+    errors.add(:password,'Password doesn\'t match password confirmation') if not password.eql? password_confirmation
   end
 
 end
