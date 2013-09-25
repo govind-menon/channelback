@@ -28,7 +28,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.category_id = params[:post][:category_id]
+    @post.category = Category.find(params[:post][:category_id])
     tags = params[:post][:tags]
     @post.tags = []
     tags.split(',').each do |tag|
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
         t = Tag.new(:name => tag)
         t.save
       end
-      t.post_id = @post.id
+      t.post= @post
       @post.tags << t
     end
     @post.assign_attributes(params[:post].except(:category_id).except(:tags))
@@ -53,8 +53,8 @@ class PostsController < ApplicationController
       redirect_to sign_in_path
     else
       @post = Post.new(params[:post].except(:category_id).except(:tags))
-      @post.user_id = @current_user.id
-      @post.category_id = params[:post][:category_id]
+      @post.user = @current_user
+      @post.category= Category.find(params[:post][:category_id])
       tags = params[:post][:tags]
       tags.split(',').each do |tag|
         t = Tag.find_by_name(tag)
@@ -62,7 +62,7 @@ class PostsController < ApplicationController
           t = Tag.new(:name => tag)
           t.save
         end
-        t.post_id = @post.id
+        t.post = @post
         @post.tags << t
       end
       if @post.save

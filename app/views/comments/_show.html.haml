@@ -1,10 +1,10 @@
 - @post.comments.each do |comment|
   -@comment = comment
-  %h4= User.find(@comment.user_id).name
+  %h4= @comment.user.name
   %p= @comment.text
-  %p= CommentVote.find_all_by_comments_id(@comment.id).count
+  %p= CommentVote.find_all_by_comment_id(@comment.id).count
   -if @current_user
-    - if (comment.user_id.eql? @current_user.id) or @current_admin
+    - if (comment.user.id.eql? @current_user.id) or @current_admin
       = button_to 'Delete', {:controller => :comments,:action => :destroy ,:id => comment.id},:method => :delete
     - @vote = CommentVote.find_vote(@comment.id,@current_user.id).first
     -if @vote.nil?

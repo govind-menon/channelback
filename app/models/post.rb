@@ -5,6 +5,7 @@ class Post < ActiveRecord::Base
   belongs_to :category
   has_many :tags
   has_many :comments
+  has_many :post_votes
   accepts_nested_attributes_for :tags
   validates :title,:presence => true
   validates :category,:presence => true

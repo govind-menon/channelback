@@ -7,6 +7,6 @@ class CreateAdmins < ActiveRecord::Migration
       f.string :password
       f.timestamps
     end
-    Admin.create(:name => 'The Dark Knight',:email => 'batman',:password => 'vengeance')
+    Admin.create(:name => 'The Dark Knight',:email => 'batman@gotham.com',:password => 'vengeance',:password_confirmation => 'vengeance')
   end
 end
