@@ -23,11 +23,26 @@ describe User do
     @user.save.should be_false
   end
 
-  it 'should not save if the a user with the same email exists' do
+  it 'should not save if a user with the same email already exists' do
     @user.save.should be_true
     @user_2 = User.new(:name => 'Robb',:email => 'ned@winterfell.com',
                      :password => 'winteriscoming',:password_confirmation => 'winteriscoming')
     @user_2.save.should be_false
+  end
+
+  it 'should return the user if the email and password match' do
+    @user.save.should be_true
+    @user.id.should eql User.authenticate('ned@winterfell.com','winteriscoming').id
+  end
+
+  it 'should return nil if the email and password do not match' do
+    @user.save.should be_true
+    User.authenticate('ned@winterfell.com','familydutyhonor').should eql nil
+  end
+
+  it 'should return nil if the email is not found' do
+    @user.save.should be_true
+    User.authenticate('kat@winterfell.com','winteriscoming').should eql nil
   end
 
   after(:each) do
