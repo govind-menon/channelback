@@ -6,6 +6,7 @@ describe PostsController do
     ['Category1','Category2'].each do |cat_name|
       Category.new(:name => cat_name).save
     end
+
     @user = User.new(:name => 'Ned',:email => 'ned@winterfell.com',
                      :password => 'winteriscoming',:password_confirmation => 'winteriscoming')
     @user.save
@@ -49,16 +50,16 @@ describe PostsController do
 
   it 'should edit an existing post and redirect to the list of posts' do
     put :update,:id => Post.find_by_title('This is a post title').id, :post => {:title => 'This is an edited post title',
-                                                                              :content => 'This is some more content',
-                                                                              :category_id=> Category.find_by_name('Category1').id,:tags => ''}
+                                                                                :content => 'This is some more content',
+                                                                                :category_id=> Category.find_by_name('Category1').id,:tags => ''}
     response.code.should eql '302'
     response.should redirect_to '/posts'
   end
 
   it 'should not edit an existing post and redirect back to the form' do
     put :update,:id => Post.find_by_title('This is a post title').id, :post => {:title => '',
-                                                                              :content => 'This is some more content',
-                                                                              :category_id=> Category.find_by_name('Category1').id,:tags => ''}
+                                                                                :content => 'This is some more content',
+                                                                                :category_id=> Category.find_by_name('Category1').id,:tags => ''}
     response.code.should eql '302'
     response.should redirect_to '/posts/' + Post.find_by_title('This is a post title').id.to_s + '/edit'
   end
