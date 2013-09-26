@@ -32,24 +32,28 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
-    @post.category = Category.find(params[:post][:category_id])
-    tags = params[:post][:tags]
-    @post.tags = []
-    tags.split(',').each do |tag|
-      t = Tag.find_by_name(tag)
-      if t.nil?
-        t = Tag.new(:name => tag)
-        t.save
-      end
-      t.post= @post
-      @post.tags << t
-    end
-    @post.assign_attributes(params[:post].except(:category_id).except(:tags))
-    if @post.save
-      redirect_to posts_path
+    if @current_user.nil?
+      redirect_to sign_in_path
     else
-      redirect_to edit_post_path
+      @post = Post.find(params[:id])
+      @post.category = Category.find(params[:post][:category_id])
+      tags = params[:post][:tags]
+      @post.tags = []
+      tags.split(',').each do |tag|
+        t = Tag.find_by_name(tag)
+        if t.nil?
+          t = Tag.new(:name => tag)
+          t.save
+        end
+        t.post= @post
+        @post.tags << t
+      end
+      @post.assign_attributes(params[:post].except(:category_id).except(:tags))
+      if @post.save
+        redirect_to posts_path
+      else
+        redirect_to edit_post_path
+      end
     end
   end
 
