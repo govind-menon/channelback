@@ -22,8 +22,13 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
-    @categories = Category.all
+    if @current_user.nil?
+      redirect_to sign_in_path
+    else
+      @post = Post.find(params[:id])
+      @categories = Category.all
+    end
+
   end
 
   def update
