@@ -7,14 +7,31 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render 'layouts/header' %>
-<% if flash[:error] -%>
-    <p class='error'><%=h flash[:error] %></p>
-<% end -%>
-<% if flash[:notice] -%>
-    <p class='notice'><%=h flash[:notice] %></p>
-<% end -%>
-<%= yield %>
+<div class="navbar navbar-fixed-top">
+  <div class = "navbar navbar-inverse">
+   <div class="navbar-inner">
+
+                     <a class="brand" href="#" >ChannelBack</a>
+                      <ul class="nav">
+                       <li class="active"><a href="#">Home</a></li>
+                        <li class="icon-align-right"><a href="#">Logout</a></li>
+
+
+                      </ul>
+  </div>
+</div>
+</div>
+            <div class="container">
+            <%= render 'layouts/header' %>
+            <% if flash[:error] -%>
+                <p class='error'><%=h flash[:error] %></p>
+            <% end -%>
+            <% if flash[:notice] -%>
+                <p class='notice'><%=h flash[:notice] %></p>
+            <% end -%>
+            <%= yield %>
+         </div>
+
 
 </body>
 </html>
