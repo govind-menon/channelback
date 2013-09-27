@@ -3,12 +3,15 @@ Channelback::Application.routes.draw do
 get '/users/sign_in' => 'users#sign_in',:as => :sign_in
 get '/admin/sign_in' => 'admins#sign_in',:as => :admin_sign_in
 get '/admin' => 'admins#sign_in'
+get '/admin/users' => 'users#index',:as => :admin_users
 post '/users/sign_in' => 'users#login',:as => :login
 post '/admin/sign_in' => 'admins#login',:as => :admin_login
 post '/users/logout' => 'users#logout',:as => :logout
 post '/admin/logout' => 'admins#logout',:as => :admin_logout
 post '/comment_votes/:id' => 'comment_votes#destroy'
 post '/posts/search' => 'posts#search',:as => :search
+post '/admin/users/:id' => 'users#promote'
+delete '/admin/users/:id' => 'users#demote'
 root :to => 'posts#index'
 resources :users
 resources :posts

@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
     errors.add(:password,'Password doesn\'t match password confirmation') if not password.eql? password_confirmation
   end
 
+  def is_admin?
+    not Admin.find_by_email(email).nil?
+  end
+
 end

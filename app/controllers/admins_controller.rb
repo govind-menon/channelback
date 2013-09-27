@@ -31,6 +31,11 @@ class AdminsController < ApplicationController
     if not @admin.email.to_s.eql? 'batman'
       @admin.destroy
     end
+
+    if session[:admin_id] = @admin.id
+      session[:admin_id] = nil
+    end
+
     redirect_to admins_path
   end
 
