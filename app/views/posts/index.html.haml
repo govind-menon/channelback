@@ -1,4 +1,9 @@
 %h1 ChannelBack
+= form_tag search_path,:method => :post do
+  = label_tag 'Search Posts'
+  = text_field_tag :query
+  = select :category,:category_id, @categories.map {|c| [c.name,c.id]}
+  = submit_tag 'Find'
 - @posts.each do |post|
   %h1= post.title
   %p= 'in ' + post.category.name

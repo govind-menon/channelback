@@ -8,6 +8,7 @@ post '/admin/sign_in' => 'admins#login',:as => :admin_login
 post '/users/logout' => 'users#logout',:as => :logout
 post '/admin/logout' => 'admins#logout',:as => :admin_logout
 post '/comment_votes/:id' => 'comment_votes#destroy'
+post '/posts/search' => 'posts#search',:as => :search
 root :to => 'posts#index'
 resources :users
 resources :posts

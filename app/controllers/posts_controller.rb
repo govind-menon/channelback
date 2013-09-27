@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @categories = Category.all
   end
 
   def show
@@ -86,6 +87,12 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
+  end
+
+  def search
+    @categories = Category.all
+    @posts = Post.find_all_by_category_id(params[:category][:category_id]).select {|p| p.title.downcase.include? params[:query].downcase or p.tag_string.downcase.include? params[:query].downcase }
+    render 'index'
   end
 
 end
