@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   # To change this template use File | Settings | File Templates.
 
   def index
-    @posts = Post.all
+    @posts = Post.all.sort {|p,q| p.active_score <=> q.active_score}
     @categories = Category.all
   end
 

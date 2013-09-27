@@ -14,4 +14,13 @@ class Post < ActiveRecord::Base
   def tag_string
     return tags.collect{|t| t.name}.join(',')
   end
+
+  def active_score
+    post_votes_count = post_votes.count
+    comment_votes_count = comments.map {|v| v.comment_votes.count }
+    comment_votes_count = comment_votes_count.inject(0) {|p,v| p + v}
+    first_post_time = Post.all.sort {|p,q| p.created_at <=> q.created_at}.first.created_at
+    -(post_votes_count + 0.5 * comment_votes_count + 0.1*(created_at - first_post_time)/36e6)
+  end
+
 end

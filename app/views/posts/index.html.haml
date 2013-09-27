@@ -1,13 +1,14 @@
-%h1 ChannelBack
+%h1.page-header Today's Posts
 = form_tag search_path,:method => :post do
   = label_tag 'Search Posts'
   = text_field_tag :query
   = select :category,:category_id, @categories.map {|c| [c.name,c.id]}
   = submit_tag 'Find'
 - @posts.each do |post|
-  %h1= post.title
+  %h3.modal-header= post.title
   %p= 'in ' + post.category.name
-  %p= post.content
+  %p= post.active_score
+  %p.container-fluid= post.content
   %p= 'by ' + post.user.name
   - if (@current_user and post.user_id.eql? @current_user.id) or @current_admin
     = link_to 'Edit',edit_post_path(post)
