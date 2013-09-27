@@ -4,4 +4,5 @@
   - if @current_admin and @current_admin.id.eql? admin.id
     %p= link_to 'Delete',admin_path(admin),:method => :delete
 = link_to 'Create New Admin',new_admin_path
-= link_to 'Create New Category',new_category_path
+= link_to 'Show all Categories',categories_path
+= link_to 'Show all Posts',posts_path
