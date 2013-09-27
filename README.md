@@ -15,6 +15,4 @@ Following set of commands can be used to make the changes in the repository:
 7. Then run the test cases by the command "bundle exec rspec".
 8. If all the tests pass, you can push your changes by using "git push" command. If the command runs successfully,
    your changes have been made in the repository.
-9. You can relax and have a cup of coffee. :)
-
 

@@ -1,14 +1,15 @@
 - @post.comments.each do |comment|
   -@comment = comment
-  %h4= @comment.user.name
+  %h4= 'by ' + @comment.user.name
   %p= @comment.text
-  %p= CommentVote.find_all_by_comment_id(@comment.id).count
+  %p= CommentVote.find_all_by_comment_id(@comment.id).count.to_s +  ' Vote'.pluralize(CommentVote.find_all_by_comment_id(@comment.id).count)
   -if @current_user
     - if (comment.user.id.eql? @current_user.id) or @current_admin
       = button_to 'Delete', {:controller => :comments,:action => :destroy ,:id => comment.id},:method => :delete
     - @vote = CommentVote.find_vote(@comment.id,@current_user.id).first
-    -if @vote.nil?
-      = render 'comment_votes/form'
-    -else
-      = render 'comment_votes/destroy'
+    -if (@current_user and not @comment.user_id.eql? @current_user.id)
+      -if @vote.nil?
+        = render 'comment_votes/form'
+      -else
+        = render 'comment_votes/destroy'
   %br
