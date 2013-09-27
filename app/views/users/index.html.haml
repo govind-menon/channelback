@@ -1,0 +1,11 @@
+%h1.page-header Users
+- @users.each do |user|
+  %h3.label= 'Name'
+  %p.info= user.name
+  %h3.label= 'Email'
+  %p.info= user.email
+  - if not @current_admin.nil?
+    -if user.is_admin?
+      %p= button_to 'Demote',{:controller => :users,:action => :demote,:id => user.id},:method => :delete
+    -else
+      %p= button_to 'Promote',:controller => :users,:action => :promote,:method => :post,:id => user.id
