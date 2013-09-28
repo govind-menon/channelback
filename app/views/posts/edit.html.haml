@@ -1,2 +1,4 @@
 %h1= 'Editing '+ @post.title+' by ' + @current_user.name
 = render 'posts/form'
+= link_to 'Back to All Posts', posts_path
+%br

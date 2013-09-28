@@ -12,7 +12,7 @@ Following set of commands can be used to make the changes in the repository:
 4. Then run "git add ."
 5. Then commit by running "git commit -m "comments"" command.
 6. Then you can use "git pull --rebase" to check if the current branch is up to date or not.
-7. Then run the test cases by the command "bundle exec rspec".
+7. Then run the test cases by the commands "bundle exec rspec" and "bundle exec cucumber".
 8. If all the tests pass, you can push your changes by using "git push" command. If the command runs successfully,
    your changes have been made in the repository.
 
