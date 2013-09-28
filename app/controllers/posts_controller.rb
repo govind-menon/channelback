@@ -91,7 +91,7 @@ class PostsController < ApplicationController
 
   def search
     @categories = Category.all
-    @posts = Post.find_all_by_category_id(params[:category][:category_id]).select {|p| p.title.downcase.include? params[:query].downcase or p.tag_string.downcase.include? params[:query].downcase }
+    @posts = Post.find_all_by_category_id(params[:category][:category_id]).select {|p| p.title.downcase.include? params[:query].downcase or p.tag_string.downcase.include? params[:query].downcase or p.content.downcase.include? params[:query].downcase or p.user.name.downcase.include? params[:query].downcase}
     render 'index'
   end
 
