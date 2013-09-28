@@ -1,4 +1,4 @@
-%h1= @post.title
+%h2.page-header= @post.title
 %p= 'in ' + @post.category.name
 %p= @post.content
 %p= 'by ' + @post.user.name
@@ -13,7 +13,7 @@
   -else
     = button_to '-',{:controller => :post_votes,:action => :destroy ,:id => @vote.id},:method => :delete
 %br
-%h2= 'Comments'
+%h3.page-header= 'Comments'
 %br
 = render 'comments/show'
 - if @current_user
