@@ -1,6 +1,6 @@
-Feature: User Signing Up
+Feature: User Authentication
 
-  Scenario: User Signing Up and Signing in
+  Scenario: User Signing Up, Signing In and Signing Out
     Given that I visit the sign in page
     And I click "First Time Here?"
     Then I should see "Sign Up Form"
@@ -14,3 +14,6 @@ Feature: User Signing Up
     And on the login page I fill in "password" with "winteriscoming"
     When I press "Log In"
     Then I should see the "posts" page
+    When I press "Sign Out"
+    Then the page should have the message "You have been logged out"
+    Then I should see the "user_sign_in" page

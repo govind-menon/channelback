@@ -29,5 +29,5 @@ And(/^on the login page I fill in "(.*?)" with "(.*)?"$/) do |arg1,arg2|
 end
 
 Then(/^I should see the "(.*?)" page$/) do |arg1|
-  current_path.should == posts_path
+  current_path.should == path_of(arg1)
 end
