@@ -28,15 +28,20 @@ class AdminsController < ApplicationController
 
   def destroy
     @admin = Admin.find(params[:id])
-    if not @admin.email.to_s.eql? 'batman'
+    if not @admin.email.to_s.eql? 'batman@gotham.com'
       @admin.destroy
+      @admin.save
+
+      if session[:admin_id] = @admin.id
+        session[:admin_id] = nil
+      end
+
+      redirect_to admin_sign_in_path
+    else
+      redirect_to admins_path
     end
 
-    if session[:admin_id] = @admin.id
-      session[:admin_id] = nil
-    end
 
-    redirect_to admins_path
   end
 
   def sign_in
