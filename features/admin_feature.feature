@@ -7,7 +7,7 @@ Feature: Admin
     And on the admin sign in page I fill in "password" with "wearitlikearmour"
     And I press "Log In"
     Then I should see the list of admins
-    And I click "Show all Categories"
+    And I click "Manage Categories"
     Then I should see the list of categories
     When I click "New Category"
     And on the new category form I fill in "name" with "Broken Things"

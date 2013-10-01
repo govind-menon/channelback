@@ -11,10 +11,10 @@
 
             <div class='container'>
               <% if flash[:error] -%>
-                  <p class='error'><%=h flash[:error] %></p>
+                  <p class='alert alert-error'><%=h flash[:error] %></p>
               <% end -%>
               <% if flash[:notice] -%>
-                  <p class='notice'><%=h flash[:notice] %></p>
+                  <p class='alert alert-info'><%=h flash[:notice] %></p>
               <% end -%>
               <%= render 'layouts/header' %>
 

@@ -3,8 +3,3 @@
   %p= admin.name
   - if @current_admin and @current_admin.id.eql? admin.id
     %p= link_to 'Delete',admin_path(admin),:method => :delete
-%ul.control-group
-  %li.control-group= link_to 'Create New Admin',new_admin_path
-  %li.control-group= link_to 'Show all Categories',categories_path
-  %li.control-group= link_to 'Show all Posts',posts_path
-  %li.control-group= link_to 'Manage Users',admin_users_path
