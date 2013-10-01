@@ -15,6 +15,4 @@
   %p= 'Tagged with ' + post.tag_string
   = link_to 'Read',post_path(post)
   %br
-- if @current_user
-  = link_to 'New Post', new_post_path
 = link_to 'Back to All Posts', posts_path

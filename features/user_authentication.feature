@@ -14,6 +14,6 @@ Feature: User Authentication
     And on the login page I fill in "password" with "winteriscoming"
     When I press "Log In"
     Then I should see the "posts" page
-    When I press "Sign Out"
+    When I click "Sign Out"
     Then the page should have the message "You have been logged out"
     Then I should see the "user_sign_in" page
