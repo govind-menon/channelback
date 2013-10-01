@@ -7,7 +7,7 @@
 - @posts.each do |post|
   %h3.modal-header= post.title
   %p= 'in ' + post.category.name
-  %p.container-fluid= post.content
+  %p.container-fluid= truncate(post.content)
   %p= 'by ' + post.printed_user_name
   - if (@current_user and post.user_id.eql? @current_user.id) or @current_admin
     = link_to 'Edit',edit_post_path(post)

@@ -4,6 +4,7 @@ get '/users/sign_in' => 'users#sign_in',:as => :sign_in
 get '/admin/sign_in' => 'admins#sign_in',:as => :admin_sign_in
 get '/admin' => 'admins#sign_in'
 get '/admin/users' => 'users#index',:as => :admin_users
+get '/admin/activity' => 'admins#activity',:as => :activity
 post '/users/sign_in' => 'users#login',:as => :login
 post '/admin/sign_in' => 'admins#login',:as => :admin_login
 post '/users/logout' => 'users#logout',:as => :logout

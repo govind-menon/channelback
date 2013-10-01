@@ -1,0 +1,11 @@
+%h2.page-header Popular Posts
+- @posts.each do |post|
+  %h4= link_to post.title, post_path(post)
+  %p= 'Votes Received = '+ post.post_votes.count.to_s
+  %br
+%br
+
+%h2.page-header Popular Comments
+- @comments.each do |comment|
+  %h4= link_to comment.text,post_path(comment.post)
+  %p= 'Votes Received = '+ comment.comment_votes.count.to_s
