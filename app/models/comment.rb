@@ -9,4 +9,13 @@ class Comment < ActiveRecord::Base
 
   has_many :comment_votes
 
+  def printed_user_name
+    if user.nil?
+      'Anonymous'
+    else
+      user.name
+    end
+  end
+
+
 end

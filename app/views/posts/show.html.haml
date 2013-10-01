@@ -1,7 +1,7 @@
 %h2.page-header= @post.title
 %p= 'in ' + @post.category.name
 %p= @post.content
-%p= 'by ' + @post.user.name
+%p= 'by ' + @post.printed_user_name
 %p= 'Tagged with ' + @post.tag_string
 %p= 'It has received ' + PostVote.where(:post_id => @post.id).count.to_s + ' vote'.pluralize(PostVote.where(:post_id => @post.id).count)
 -if (@current_user and @post.user_id.eql? @current_user.id) or @current_admin

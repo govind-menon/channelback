@@ -9,3 +9,4 @@
       %p= button_to 'Demote',{:controller => :users,:action => :demote,:id => user.id},:method => :delete
     -else
       %p= button_to 'Promote',:controller => :users,:action => :promote,:method => :post,:id => user.id
+  %p= button_to 'Delete',{:controller => :users,:action => :destroy,:id => user.id},:method => :delete

@@ -22,4 +22,12 @@ class Post < ActiveRecord::Base
     -(post_votes_count + 0.5 * comment_votes_count + 0.1*(created_at - first_post_time)/36e6)
   end
 
+  def printed_user_name
+    if user.nil?
+      'Anonymous'
+    else
+      user.name
+    end
+  end
+
 end

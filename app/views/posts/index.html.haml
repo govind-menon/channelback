@@ -8,7 +8,7 @@
   %h3.modal-header= post.title
   %p= 'in ' + post.category.name
   %p.container-fluid= post.content
-  %p= 'by ' + post.user.name
+  %p= 'by ' + post.printed_user_name
   - if (@current_user and post.user_id.eql? @current_user.id) or @current_admin
     = link_to 'Edit',edit_post_path(post)
     = link_to 'Delete',post_path(post),:method => :delete

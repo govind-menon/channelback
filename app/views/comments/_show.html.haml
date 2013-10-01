@@ -1,7 +1,7 @@
 - @post.comments.each do |comment|
   -@comment = comment
-  %h4= 'by ' + @comment.user.name
   %p= @comment.text
+  %h5= 'by ' + @comment.printed_user_name
   %p= CommentVote.find_all_by_comment_id(@comment.id).count.to_s +  ' Vote'.pluralize(CommentVote.find_all_by_comment_id(@comment.id).count)
   -if @current_user
     - if (comment.user.id.eql? @current_user.id) or @current_admin
