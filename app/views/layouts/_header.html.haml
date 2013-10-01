@@ -1,14 +1,18 @@
-- if is_admin_page?
-  - if @current_admin
-    = button_to 'Sign Out', admin_logout_path,:method => :post
-  - else
-    = button_to 'Sign In', admin_sign_in_path
-    %br
--else
-  - if @current_user
-    = button_to 'Sign Out', logout_path,:method => :post
-  - elsif @current_admin
-    = button_to 'Sign Out', admin_logout_path,:method => :post
-  - else
-    = button_to 'Sign In', sign_in_path
-  %br
+.navbar.navbar-fixed-top
+  .navbar.navbar-inverse
+    .navbar-inner
+      .container
+        .brand= 'ChannelBack'
+        %ul.nav
+          - if is_admin_page?
+            - if @current_admin
+              = render 'admins/dashboard_links'
+            - else
+              %li.navbar-link= link_to 'Sign In', admin_sign_in_path
+          -else
+            - if @current_user
+              = render 'users/user_links'
+            - elsif @current_admin
+              = render 'admins/dashboard_links'
+            - else
+              %li.navbar-link= link_to 'Sign In', sign_in_path
