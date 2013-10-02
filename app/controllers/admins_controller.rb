@@ -69,8 +69,8 @@ class AdminsController < ApplicationController
   end
 
   def activity
-    @posts = Post.all.sort {|p,q| p.post_votes.count < q.post_votes.count}
-    @comments = Comment.all.sort {|p,q| p.comment_votes.count < q.comment_votes.count}
+    @posts = Post.all.sort {|p,q| q.post_votes.count <=> p.post_votes.count}
+    @comments = Comment.all.sort {|p,q| q.comment_votes.count <=> p.comment_votes.count}
   end
   
 end
