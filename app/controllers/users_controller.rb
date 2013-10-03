@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       flash[:notice]= 'You may now login'
       redirect_to sign_in_path
     else
-      redirect_to new_user_path
+      render 'users/new'
     end
   end
 
