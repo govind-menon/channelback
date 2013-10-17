@@ -1,5 +1,16 @@
 ChannelBack
 
+Enhancements:
+
+* Deleting a category deletes all the posts associated with it
+* Error messages on user sign up form
+
+Bug Fixes
+
+* Bug on activity report
+* Bug on search for deleted users
+
+
 Team
 
 Team Members :
